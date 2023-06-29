@@ -7,32 +7,32 @@ TechBag is a web application developed using React, Express.js, MySQL, Prisma, A
 To run the project locally, follow these steps:
 
 1. Clone the repository:
--git clone https://github.com/TusharPani14/TechBagWork.git
+- git clone https://github.com/TusharPani14/TechBagWork.git
 
 2. Navigate to the project's root directory:
--cd TechBagWork
+- cd TechBagWork
 
 3. Install backend dependencies:
--cd backend
--npm install
+- cd backend
+- npm install
 
 4. Create a `.env` file in the backend directory and add the following environment variables:
--DATABASE_URL=Your Database Url
--PORT=5000
--EMAILUSER=
--EMAILPASSWORD=
--NODE_ENV=development
+- DATABASE_URL=Your Database Url
+- PORT=5000
+- EMAILUSER=
+- EMAILPASSWORD=
+- NODE_ENV=development
 
 5. Start the backend server:
--cd ..
--cd frontend
--npm install
+- cd ..
+- cd frontend
+- npm install
 
 7. Create a `.env` file in the frontend directory and add the following environment variable:
--REACT_APP_BACKEND_URL=http://localhost:5000
+- REACT_APP_BACKEND_URL=http://localhost:5000
 
 8. Start the frontend development server:
--npm run dev
+- npm run dev
 
 9. Open your browser and visit [http://localhost:3000](http://localhost:3000) to access the TechBag website.
 
