@@ -17,10 +17,10 @@ cd backend
 npm install
 
 4. Create a `.env` file in the backend directory and add the following environment variables:
-DATABASE_URL=mysql://root:tusharpani14@localhost:3306/techbag
+DATABASE_URL=Your Database Url
 PORT=5000
-EMAILUSER=tusharpanigrahi66@gmail.com
-EMAILPASSWORD=oybfacyqeowzauxa
+EMAILUSER=
+EMAILPASSWORD=
 NODE_ENV=development
 
 5. Start the backend server:
