@@ -6,7 +6,7 @@ const buyNowRoute = require("./routes/buyNowRoute")
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 var cors = require('cors')
 
-dotenv.config({path: ".env.local"});
+dotenv.config();
 
 const app = express();
 
