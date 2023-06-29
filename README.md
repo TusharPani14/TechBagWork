@@ -45,3 +45,6 @@ npm run dev
 - AWS RDS: Amazon Relational Database Service, a managed database service provided by AWS.
 - Nodemailer: A module for Node.js used for sending emails.
 
+## Sample Images
+
+![Screenshot (359)](https://github.com/TusharPani14/TechBagWork/assets/97904669/0e777826-4c5c-4962-88a1-a48fabc0b92c)
