@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
   Grid,
@@ -14,8 +14,10 @@ import {
   Alert,
 } from "@mui/material";
 import Navbar from "../conponents/Navbar";
+import { useNavigate } from "react-router-dom";
 
 const CustomerForm = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
@@ -28,8 +30,10 @@ const CustomerForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const profileObj = JSON.parse(localStorage.getItem("profileObj"));
     // Create an object with the customer details
     const customerData = {
+      userId: profileObj.id,
       name,
       email,
       shippingAddress: address,
@@ -84,6 +88,14 @@ const CustomerForm = () => {
     const regex = new RegExp("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$", "i");
     return regex.test(email);
   };
+
+  useEffect(() => {
+    const profileObj = JSON.parse(localStorage.getItem("profileObj"));
+
+    if (!profileObj) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   return (
     <Box>

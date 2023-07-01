@@ -7,12 +7,15 @@ import {
   ListItem,
   ListItemText,
   Divider,
+  Snackbar,
 } from "@mui/material";
 import Navbar from "../conponents/Navbar";
+import { Alert } from "@mui/material";
 
 const HomePage = () => {
   const navigate = useNavigate();
   const [selectedContent, setSelectedContent] = useState("Web Security");
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleContentClick = (content) => {
     setSelectedContent(content);
@@ -21,11 +24,14 @@ const HomePage = () => {
   const handleLogoClick = () => {
     const profileObj = JSON.parse(localStorage.getItem("profileObj"));
     if (!profileObj) {
-      alert("Please login to access this feature.");
-      //navigate("/login"); // Redirect to login page
+      setShowAlert(true);
     } else {
       navigate("/form");
     }
+  };
+
+  const handleSnackbarClose = () => {
+    setShowAlert(false);
   };
 
   return (
@@ -88,6 +94,11 @@ const HomePage = () => {
           </Box>
         </Box>
       </Box>
+      <Snackbar open={showAlert} autoHideDuration={3000} onClose={handleSnackbarClose}>
+        <Alert severity="warning" onClose={handleSnackbarClose}>
+          Please login to access this feature.
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };

@@ -31,7 +31,7 @@ const Navbar = () => {
   const onSuccess = (res) => {
     console.log("Login Success", res.profileObj);
     setProfileImg(res.profileObj.imageUrl);
-
+  
     // Call the /user/login route
     axios
       .post("/user/login", {
@@ -41,14 +41,19 @@ const Navbar = () => {
       .then((response) => {
         // Handle the response from the server if needed
         console.log(response.data);
-
+  
+        const updatedProfileObj = {
+          ...res.profileObj,
+          id: response.data.user.id, // Append the ID from response.data
+        };
+  
         setSuccess(true);
         setSnackbarMessage("Login successful");
         setSnackbarSeverity("success");
         setSnackbarOpen(true);
-
-        // Store profileObj in localStorage
-        localStorage.setItem("profileObj", JSON.stringify(res.profileObj));
+  
+        // Store updatedProfileObj in localStorage
+        localStorage.setItem("profileObj", JSON.stringify(updatedProfileObj));
       })
       .catch((error) => {
         // Handle any errors that occur during the request
@@ -58,7 +63,7 @@ const Navbar = () => {
         setSnackbarSeverity("error");
         setSnackbarOpen(true);
       });
-  };
+  };  
 
   const onFailure = (res) => {
     console.log("Login Failed", res);
