@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const colors = require("colors");
 const path = require("path");
+const userRoutes = require("./routes/userRoutes")
 const buyNowRoute = require("./routes/buyNowRoute")
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 var cors = require('cors')
@@ -25,6 +26,7 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
+app.use("/user", userRoutes);
 app.use("/buyNow", buyNowRoute);
 
 //----------------------------Development-----------------------------------

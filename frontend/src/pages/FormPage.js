@@ -13,6 +13,7 @@ import {
   Snackbar,
   Alert,
 } from "@mui/material";
+import Navbar from "../conponents/Navbar";
 
 const CustomerForm = () => {
   const [name, setName] = useState("");
@@ -85,107 +86,110 @@ const CustomerForm = () => {
   };
 
   return (
-    <Box display="flex" justifyContent="center" p={4}>
-      <Box p={4} width="60%">
-        <img
-          src="https://www.thetechbag.com/images/landing/hero.jpg"
-          alt="Tech Bag"
-          style={{ maxWidth: "100%", height: "auto" }}
-        />
-      </Box>
+    <Box>
+      <Navbar />
+      <Box display="flex" justifyContent="center" p={4}>
+        <Box p={4} width="60%">
+          <img
+            src="https://www.thetechbag.com/images/landing/hero.jpg"
+            alt="Tech Bag"
+            style={{ maxWidth: "100%", height: "auto" }}
+          />
+        </Box>
 
-      <Box p={4} width="40%" border={1} borderRadius={8}>
-        <form onSubmit={handleSubmit}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <Typography variant="h5" align="center" gutterBottom>
-                Customer Details
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Name"
-                variant="outlined"
-                fullWidth
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-                inputProps={{
-                  pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$",
-                }}
-                error={Boolean(emailError)}
-                helperText={emailError}
-                value={email}
-                onChange={handleEmailChange}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Shipping Address"
-                variant="outlined"
-                fullWidth
-                multiline
-                rows={4}
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                required
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControl variant="outlined" fullWidth required>
-                <InputLabel>Payment Method</InputLabel>
-                <Select
-                  value={paymentMethod}
-                  onChange={(e) => setPaymentMethod(e.target.value)}
-                  label="Payment Method"
+        <Box p={4} width="40%" border={1} borderRadius={8}>
+          <form onSubmit={handleSubmit}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <Typography variant="h5" align="center" gutterBottom>
+                  Customer Details
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Name"
+                  variant="outlined"
+                  fullWidth
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                  inputProps={{
+                    pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$",
+                  }}
+                  error={Boolean(emailError)}
+                  helperText={emailError}
+                  value={email}
+                  onChange={handleEmailChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Shipping Address"
+                  variant="outlined"
+                  fullWidth
+                  multiline
+                  rows={4}
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  required
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl variant="outlined" fullWidth required>
+                  <InputLabel>Payment Method</InputLabel>
+                  <Select
+                    value={paymentMethod}
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                    label="Payment Method"
+                  >
+                    <MenuItem value="">Select Payment Method</MenuItem>
+                    <MenuItem value="creditCard">Credit Card</MenuItem>
+                    <MenuItem value="paypal">PayPal</MenuItem>
+                    <MenuItem value="bankTransfer">Bank Transfer</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  fullWidth
                 >
-                  <MenuItem value="">Select Payment Method</MenuItem>
-                  <MenuItem value="creditCard">Credit Card</MenuItem>
-                  <MenuItem value="paypal">PayPal</MenuItem>
-                  <MenuItem value="bankTransfer">Bank Transfer</MenuItem>
-                </Select>
-              </FormControl>
+                  Buy Now
+                </Button>
+              </Grid>
             </Grid>
-            <Grid item xs={12}>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                fullWidth
-              >
-                Buy Now
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
-      </Box>
+          </form>
+        </Box>
 
-      <Snackbar
-        open={snackbarOpen}
-        autoHideDuration={3000}
-        onClose={handleSnackbarClose}
-      >
-        <Alert
+        <Snackbar
+          open={snackbarOpen}
+          autoHideDuration={3000}
           onClose={handleSnackbarClose}
-          severity={snackbarSeverity}
-          sx={{ width: "100%" }}
         >
-          {snackbarMessage}
-        </Alert>
-      </Snackbar>
+          <Alert
+            onClose={handleSnackbarClose}
+            severity={snackbarSeverity}
+            sx={{ width: "100%" }}
+          >
+            {snackbarMessage}
+          </Alert>
+        </Snackbar>
+      </Box>
     </Box>
   );
 };

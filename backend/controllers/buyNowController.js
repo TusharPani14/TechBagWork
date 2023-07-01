@@ -4,7 +4,7 @@ const nodemailer = require("nodemailer");
 
 const prisma = new PrismaClient();
 
-const sendResetPassword = async (name, email, shippingAddress, res) => {
+const sendOrderConfirmation = async (name, email, shippingAddress, res) => {
   try {
     console.log(process.env.EMAILUSER, name);
     const transporter = nodemailer.createTransport({
@@ -48,11 +48,12 @@ const sendResetPassword = async (name, email, shippingAddress, res) => {
 
 const buyNowController = asyncHandler(async (req, res) => {
   try {
-    const { name, email, shippingAddress, paymentMethod } = req.body;
+    const {userId, name, email, shippingAddress, paymentMethod } = req.body;
 
     // Save customer details to the database
     const order = await prisma.form.create({
       data: {
+        userId,
         name,
         email,
         shippingAddress,
@@ -60,7 +61,7 @@ const buyNowController = asyncHandler(async (req, res) => {
       },
     });
 
-    sendResetPassword(name, email, shippingAddress, res);
+    sendOrderConfirmation(name, email, shippingAddress, res);
 
     res.status(200).json({ message: "Order placed successfully", order });
   } catch (error) {

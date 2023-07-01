@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/DB-Managment-System/Backend#readme",
   "dependencies": {
-    "@prisma/client": "^4.16.1",
+    "@prisma/client": "^4.16.2",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "cors": "^2.8.5",

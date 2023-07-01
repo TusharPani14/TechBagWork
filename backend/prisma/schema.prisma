@@ -10,11 +10,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model user {
+  id    Int    @id @default(autoincrement())
+  name  String
+  email String @unique
+  form  form[]
+}
+
 model form {
   id              Int      @id @default(autoincrement())
+  userId          Int
   orderDate       DateTime @default(now())
   name            String
   email           String
   shippingAddress String
   paymentMethod   String
+  user            user     @relation(fields: [userId], references: [id])
 }
