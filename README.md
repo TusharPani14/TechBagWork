@@ -44,6 +44,7 @@ To run the project locally, follow these steps:
 - Prisma: An ORM (Object-Relational Mapping) tool used for database management and querying.
 - AWS RDS: Amazon Relational Database Service, a managed database service provided by AWS.
 - Nodemailer: A module for Node.js used for sending emails.
+- Google OAuth 2.0: An authentication protocol used for user login and authorization using Google accounts.
 
 ## Sample Images
 ![Screenshot (368)](https://github.com/TusharPani14/TechBagWork/assets/97904669/3cf45301-00fe-4f7e-8111-0c63df42f97a)
