@@ -6,7 +6,6 @@ const prisma = new PrismaClient();
 
 const sendOrderConfirmation = async (name, email, shippingAddress, res) => {
   try {
-    console.log(process.env.EMAILUSER, name);
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 587,

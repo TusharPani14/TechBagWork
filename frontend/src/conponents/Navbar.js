@@ -28,42 +28,50 @@ const Navbar = () => {
     setSnackbarOpen(false);
   };
 
-  const onSuccess = (res) => {
+  const onSuccess = async (res) => {
     console.log("Login Success", res.profileObj);
     setProfileImg(res.profileObj.imageUrl);
-  
-    // Call the /user/login route
-    axios
-      .post("/user/login", {
+
+    try {
+      // Get the access token using the Google API client library
+      const authResponse = await gapi.auth2
+        .getAuthInstance()
+        .currentUser.get()
+        .reloadAuthResponse();
+      console.log(authResponse);
+      const accessToken = authResponse.id_token;
+
+      // Call the /user/login route with the access token
+      const response = await axios.post("/user/login", {
         name: res.profileObj.givenName + " " + res.profileObj.familyName,
         email: res.profileObj.email,
-      })
-      .then((response) => {
-        // Handle the response from the server if needed
-        console.log(response.data);
-  
-        const updatedProfileObj = {
-          ...res.profileObj,
-          id: response.data.user.id, // Append the ID from response.data
-        };
-  
-        setSuccess(true);
-        setSnackbarMessage("Login successful");
-        setSnackbarSeverity("success");
-        setSnackbarOpen(true);
-  
-        // Store updatedProfileObj in localStorage
-        localStorage.setItem("profileObj", JSON.stringify(updatedProfileObj));
-      })
-      .catch((error) => {
-        // Handle any errors that occur during the request
-        console.error("Login Error:", error);
-        setSuccess(false);
-        setSnackbarMessage("Login failed");
-        setSnackbarSeverity("error");
-        setSnackbarOpen(true);
       });
-  };  
+
+      // Handle the response from the server if needed
+      console.log(response.data);
+
+      const updatedProfileObj = {
+        ...res.profileObj,
+        id: response.data.user.id, // Append the ID from response.data
+        accessToken: accessToken, // Append the access token
+      };
+
+      setSuccess(true);
+      setSnackbarMessage("Login successful");
+      setSnackbarSeverity("success");
+      setSnackbarOpen(true);
+
+      // Store updatedProfileObj in localStorage
+      localStorage.setItem("profileObj", JSON.stringify(updatedProfileObj));
+    } catch (error) {
+      // Handle any errors that occur during the request
+      console.error("Login Error:", error);
+      setSuccess(false);
+      setSnackbarMessage("Login failed");
+      setSnackbarSeverity("error");
+      setSnackbarOpen(true);
+    }
+  };
 
   const onFailure = (res) => {
     console.log("Login Failed", res);

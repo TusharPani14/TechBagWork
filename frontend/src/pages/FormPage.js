@@ -29,7 +29,7 @@ const CustomerForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const profileObj = JSON.parse(localStorage.getItem("profileObj"));
     // Create an object with the customer details
     const customerData = {
@@ -39,20 +39,24 @@ const CustomerForm = () => {
       shippingAddress: address,
       paymentMethod,
     };
-
+  
     try {
       // Show a loading snackbar
       setSnackbarMessage("Submitting...");
       setSnackbarSeverity("info");
       setSnackbarOpen(true);
-
-      // Make the API call
-      await axios.post("/buyNow", customerData);
-
+  
+      // Make the API call with the access token in the headers
+      await axios.post("/buyNow", customerData, {
+        headers: {
+          Authorization: `Bearer ${profileObj.accessToken}`,
+        },
+      });
+  
       // Update the snackbar to success
       setSnackbarMessage("Order placed successfully!");
       setSnackbarSeverity("success");
-
+  
       // Reset the form fields
       setName("");
       setEmail("");
@@ -60,14 +64,14 @@ const CustomerForm = () => {
       setPaymentMethod("");
     } catch (error) {
       console.error(error);
-
+  
       // Update the snackbar to error
       setSnackbarMessage("An error occurred while placing the order.");
       setSnackbarSeverity("error");
     } finally {
       setSnackbarOpen(true);
     }
-  };
+  };  
 
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
