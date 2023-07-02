@@ -46,9 +46,9 @@ To run the project locally, follow these steps:
 - Nodemailer: A module for Node.js used for sending emails.
 
 ## Sample Images
-![Screenshot (360)](https://github.com/TusharPani14/TechBagWork/assets/97904669/8d506cf9-4d0a-483b-93b2-c44d8738ae03)
+![Screenshot (368)](https://github.com/TusharPani14/TechBagWork/assets/97904669/3cf45301-00fe-4f7e-8111-0c63df42f97a)
 
-![Screenshot (359)](https://github.com/TusharPani14/TechBagWork/assets/97904669/0e777826-4c5c-4962-88a1-a48fabc0b92c)
+![Screenshot (369)](https://github.com/TusharPani14/TechBagWork/assets/97904669/3236867a-11aa-44d9-ab41-8367cd111fb5)
 
 ![Screenshot (361)](https://github.com/TusharPani14/TechBagWork/assets/97904669/2ec61c0e-5c17-429d-aa91-0769832d31eb)
 
